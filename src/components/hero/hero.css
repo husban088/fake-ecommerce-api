@@ -1,0 +1,24 @@
+
+.buy__btn {
+    background-color: #000;
+    color: #fff;
+    border-radius: 3px;
+    padding: 8px 35px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all .7s;
+    font-weight: 600;
+    border: 1px solid #000;
+}
+
+.buy__btn:hover {
+    background-color: #3c3c3c;
+}
+
+.hero__img {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    overflow: hidden;
+}
