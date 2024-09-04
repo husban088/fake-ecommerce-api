@@ -104,13 +104,6 @@
         margin-bottom: 4rem;
     }    
 
-    .cart__prices {
-        /* transform: translate(-16rem, 4rem); */
-        position: absolute;
-        bottom: 22rem !important;
-        left: 7.5rem;
-    }
-
     .cart__price {
         /* transform: translate(-16rem, 4rem); */
         position: absolute;
@@ -125,13 +118,6 @@
         /* transform: translate(-15rem, -2rem); */
         position: absolute;
         bottom: 19rem;
-        left: 9rem;
-    }
-
-    .cart__remvs {
-        /* transform: translate(-15rem, -2rem); */
-        position: absolute;
-        bottom: 15rem !important;
         left: 9rem;
     }
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './addproduct.css';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const AddProduct = () => {
   const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
@@ -18,9 +16,12 @@ const AddProduct = () => {
     }
   }, []);
 
+  const carts = JSON.parse(localStorage.getItem('cart')) || []
+
   const handleAddProduct = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const newProduct = {
+      id: new Date().getTime(), // Use a unique ID for each product
       image,
       title,
       price
@@ -31,80 +32,106 @@ const AddProduct = () => {
     setImage('');
     setTitle('');
     setPrice('');
-    navigate('/addproduct')
+    navigate('/addproduct');
   };
 
   const handleImageChange = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]));
   };
 
+  const handleCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const isProductExist = cart.find(item => item.id === product.title);
+    if (isProductExist) {
+      const updatedCart = cart.map(item => {
+        if (item.id === product.title) {
+          return {
+            ...item,
+            quantity: item.quantity + 1
+          };
+        }
+        return item;
+      });
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([...cart, { ...product, quantity: 1 }]));
+    }
+    navigate('/addproduct');
+  };
 
-//   const handleCart = (product) => {
-//     console.log(product)
-//     const cart = JSON.parse(localStorage.getItem('cart')) || []
-//     const isProductExist = cart.find(item=> item.id === product.id)
-//     if(isProductExist) {
-//         const updatedCart = cart.map(item=> {
-//             if(item.id === product.id) {
-//                 return {
-//                     ...item,
-//                     quantity: item.quantity + 1
-//                 }
-//             }
-//             return item
-//         })
-//         localStorage.setItem('cart', JSON.stringify(updatedCart))
-//     } else {
-//         localStorage.setItem('cart', JSON.stringify([...cart, {...product, quantity: 1}]))
-//     }
-//     window.location.reload()
-// }
+  const handleDecre = (id) => {
+    const updatedCart = carts.map(item => {
+      if (item.id === id && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1
+        };
+      }
+      return item;
+    });
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    navigate('/cart');
+  };
 
-const handleRemove = () => {
-  const updatedProducts = products.filter((product, i) => i.id !== product.id);
-  setProducts(updatedProducts);
-  localStorage.setItem('products', JSON.stringify(updatedProducts));
- navigate('/addproduct')
-};
+  const handleIncre = (id) => {
+    const updatedCart = carts.map(item => {
+      if (item.id === id && item.quantity < 10) {
+        return {
+          ...item,
+          quantity: item.quantity + 1
+        };
+      }
+      return item;
+    });
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    navigate('/cart');
+  };
+
+  const handleRemove = (id) => {
+    const updatedProducts = products.filter(product => product.id !== id);
+    setProducts(updatedProducts);
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+    navigate('/addproduct');
+  };
 
   return (
     <div className='add__prod'>
       <h2 className='add__text'>Add Product</h2>
       <form>
-       <input
+        <input
           type="file"
           onChange={handleImageChange}
           placeholder="Select Image"
           className='file__img'
         />
         <div>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Product Title"
-          className='add__inpt'
-        />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Product Title"
+            className='add__inpt'
+          />
         </div>
         <div>
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          placeholder="Product Price"
-          className='add__inpt'
-        />
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Product Price"
+            className='add__inpt'
+          />
         </div>
         <button onClick={handleAddProduct} className='btn-submit'>Add Product</button>
       </form>
       <div className='add__cont'>
         {products.map((product, index) => (
-          <div key={index}>
-            <img src={product.image} alt={product.title}  className='user__img'/>
+          <div key={product.id}>
+            <img src={product.image} alt={product.title} className='user__img' />
             <h3>{product.title}</h3>
-            <p>$ {product.price}</p>            
-            {/* <button className='btn-submit' onClick={()=> handleCart(product)}>Add to cart</button> */}
-            <button onClick={()=> handleRemove(product?.id)} className='btn-submit'>Remove</button>
+            <p>$ {product.price}</p>
+            <button className='btn-submit' onClick={() => handleCart(product)}>Add to cart</button>
+            <button onClick={() => handleRemove(product.id)} className='btn-submit'>Remove</button>
           </div>
         ))}
       </div>

@@ -10,6 +10,7 @@ import CategoryProducts from './modules/categoryProducts';
 import Cart from './modules/cart';
 import Login from './modules/login';
 import AddProduct from './modules/addProduct';
+import CheckoutPage from './modules/checkout/checkout';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/products/:id' element={<Product />}/>
         <Route path='/products' element={<Products />}/>
+        <Route path='/checkout' element={<CheckoutPage />}/>
         <Route path='/categories/:name' element={<CategoryProducts />}/>
         <Route path='/cart' element={<Cart />}/>
         <Route path='/login' element={<Login />}/>

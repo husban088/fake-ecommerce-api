@@ -3,6 +3,7 @@ import './cart.css';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+
 const Cart = () => {
 
   const [total, setTotal] = useState(0)
@@ -106,9 +107,9 @@ const Cart = () => {
                                       <h3>
                                         <a href="to">{cart?.title}</a>
                                       </h3>
-                                      <p className="ml-4">$ {cart?.price}</p>
+                                      <p className="ml-4 cart__price">$ {cart?.price}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{cart?.category}</p>
+                                    <p className="mt-1 text-sm text-gray-500 cart__cate">{cart?.category}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <div className="quan__box">
@@ -120,7 +121,7 @@ const Cart = () => {
 
 
                                     <div className="flex">
-                                      <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500" onClick={() => handleRemove(cart?.id)}>Remove</button>
+                                      <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500 cart__remv" onClick={() => handleRemove(cart?.id)}>Remove</button>
                                     </div>
 
                                   </div>
@@ -146,7 +147,7 @@ const Cart = () => {
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                   <div className="mt-7 cont__btn">
-                    <a href="to" className="cont__button rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                    <Link to={'/checkout'} className="cont__button rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</Link>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>

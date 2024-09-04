@@ -2,8 +2,8 @@
 .login {
     margin-top: 6.5rem;
     margin-bottom: 4rem;
-    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
-    width: 38%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    width: 500px;
     margin-right: auto;
     margin-left: auto;
     padding-bottom: 1px 0;
@@ -11,13 +11,38 @@
     padding: 40px 0;
 }
 
+@media only screen and (max-width: 520px) {
+    .login {
+        margin-top: 6.5rem;
+        margin-bottom: 4rem;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        width: 96%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-bottom: 1px 0;
+        text-align: center;
+        padding: 40px 0;
+    }   
+
+    .inpt__text {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        outline: none;
+        padding: 10px 15px;
+        font-size: 17px;
+        margin-bottom: 3rem;
+        width: 95% !important;
+        margin-right: auto;
+        margin-left: auto;
+    }    
+  }
+
 .inpt__text {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none;
     padding: 10px 15px;
     font-size: 17px;
     margin-bottom: 3rem;
-    width: 65% !important;
+    width: 80%;
     margin-right: auto;
     margin-left: auto;
 }

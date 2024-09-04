@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import './login.css';
 import { useNavigate } from "react-router-dom";
+import logo from './logo.avif';
 
 const Login = () => {
 
@@ -50,6 +51,9 @@ const Login = () => {
 
   return (
     <div className="login">
+
+     <img src={logo} alt="logo" height='100px' width='100px' style={{objectFit:"cover", textAlign:"center", marginRight:'auto',marginLeft:'auto', marginBottom:'2rem'}}/>
+
       <h1 className="login__text">Customer login</h1>
 
       <div className="login-inputs">

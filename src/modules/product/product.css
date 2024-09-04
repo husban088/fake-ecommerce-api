@@ -2,5 +2,17 @@
 
 .prod__mod {
     margin-top: 3rem;
-    transform: translateX(-2rem);
 }
+
+.product__ddetails-two {
+    position: relative;
+}
+
+@media only screen and (max-width: 500px) {
+    .product__btns {
+        position: absolute;
+        bottom: -4rem;
+    }
+
+}
+
